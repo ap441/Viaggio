@@ -2,6 +2,7 @@ import Hero from './components/Hero';
 import FeaturedRewards from './components/FeaturedRewards';
 import PartnerShowcase from './components/PartnerShowcase';
 import HowItWorks from './components/HowItWorks';
+import {SignupForm} from './components/Signup';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <FeaturedRewards />
       <PartnerShowcase />
       <HowItWorks />
+      {/* <SignupForm /> */}
     </div>
   );
 }
