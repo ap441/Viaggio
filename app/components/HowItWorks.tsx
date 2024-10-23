@@ -11,7 +11,7 @@ const steps = [
 const HowItWorks = () => {
   return (
     <section className="py-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">How TravelChic Works</h2>
+      <h2 className="text-3xl font-bold mb-8 text-center">How Viaggio Works</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {steps.map((step, index) => (
           <Card key={index}>

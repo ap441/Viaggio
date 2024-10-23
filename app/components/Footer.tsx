@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">TravelChic</h3>
+            <h3 className="text-lg font-semibold mb-4">Viaggio</h3>
             <p className="text-muted-foreground">Elevate your travel experience with style and rewards.</p>
           </div>
           <div>
@@ -40,7 +40,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 text-center text-muted-foreground">
-          <p>&copy; 2023 TravelChic. All rights reserved.</p>
+          <p>&copy; 2024 Viaggio. All rights reserved.</p>
         </div>
       </div>
     </footer>
