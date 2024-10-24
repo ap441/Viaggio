@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils';
 import {
   IconBrandGithub,
   IconBrandGoogle,
-  IconBrandOnlyfans,
 } from '@tabler/icons-react';
+import { SuccessModal } from './SuccessModal'; 
 
 interface SignupFormProps {
   onSwitchToSignIn: () => void;
@@ -20,6 +20,7 @@ export function SignupForm({ onSwitchToSignIn }: SignupFormProps) {
     firstname: '',
     lastname: '',
   });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -27,24 +28,29 @@ export function SignupForm({ onSwitchToSignIn }: SignupFormProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await handleSignup(formData.email, formData.password);
+    await handleSignup(formData.firstname, formData.lastname, formData.email, formData.password);
   };
 
-  const handleSignup = async (email: string, password: string) => {
+  const handleSignup = async (firstname: string, lastname: string, email: string, password: string) => {
     const response = await fetch('/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ firstname, lastname, email, password }), // Send all fields
     });
 
     if (response.ok) {
       console.log('Signup successful');
+      setShowSuccessModal(true); // Show the success modal
     } else {
       const error = await response.json();
       console.error(error);
     }
+  };
+
+  const closeModal = () => {
+    setShowSuccessModal(false);
   };
 
   return (
@@ -119,9 +125,13 @@ export function SignupForm({ onSwitchToSignIn }: SignupFormProps) {
         <div className="flex flex-col space-y-4">
           <SocialButton Icon={IconBrandGithub} label="GitHub" />
           <SocialButton Icon={IconBrandGoogle} label="Google" />
-          <SocialButton Icon={IconBrandOnlyfans} label="OnlyFans" />
         </div>
       </form>
+
+      {/* Show the success modal */}
+      {showSuccessModal && (
+        <SuccessModal message="You have signed up successfully!" onClose={closeModal} />
+      )}
     </div>
   );
 }
@@ -162,4 +172,4 @@ const SocialButton = ({ Icon, label }: { Icon: any; label: string }) => {
       <BottomGradient />
     </button>
   );
-};
+}
